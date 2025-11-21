@@ -1,7 +1,7 @@
-import React from "react";
-import { View, Text, Pressable } from "react-native";
-import tw from "twrnc";
 import { useTranslation } from "react-i18next";
+import { Pressable, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import tw from "twrnc";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useTheme } from "../../hooks/useTheme";
 
@@ -11,7 +11,7 @@ export default function SettingsScreen() {
     const { theme, toggleTheme } = useTheme();
 
     return (
-        <View
+        <SafeAreaView
             style={tw`flex-1 p-6 ${theme === "dark" ? "bg-gray-900" : "bg-gray-100"
                 }`}
         >
@@ -64,6 +64,6 @@ export default function SettingsScreen() {
                     </Text>
                 </Pressable>
             </View>
-        </View>
+        </SafeAreaView>
     );
 }

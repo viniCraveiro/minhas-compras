@@ -4,6 +4,7 @@ import { Pressable, Text, View } from "react-native";
 import tw from "twrnc";
 import { useLanguage } from "../hooks/useLanguage";
 import { RootStackParamList } from "../types/Navigation";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 
 type Props = {
@@ -16,7 +17,7 @@ export default function HomeScreen({ navigation }: Props) {
 
 
     return (
-        <View style={tw`flex-1 items-center justify-center p-6 bg-gray-100`}>
+        <SafeAreaView style={tw`flex-1 items-center justify-center p-6 bg-gray-100`}>
             <Text style={tw`text-2xl font-bold text-gray-800 mb-8`}>
                 {t("home.title")}
             </Text>
@@ -41,6 +42,6 @@ export default function HomeScreen({ navigation }: Props) {
                 <Text style={tw`text-center text-white text-lg`}>{t("home.settings", "Configurações")}</Text>
             </Pressable>
 
-        </View>
+        </SafeAreaView>
     );
 }
