@@ -3,8 +3,14 @@ import { View, Text, TextInput, Pressable } from "react-native";
 import tw from "twrnc";
 
 import { createProduct } from "../../services/firebase/product.service";
+import { RootStackParamList } from "../../types/Navigation";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-export default function ProductFormScreen({ navigation }) {
+type Props = {
+    navigation: NativeStackNavigationProp<RootStackParamList, "ProductForm">;
+};
+
+export default function ProductFormScreen({ navigation }: Props) {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
 
@@ -23,18 +29,18 @@ export default function ProductFormScreen({ navigation }) {
     return (
         <View style={tw`flex-1 bg-gray-100 p-6`}>
             <Text style={tw`text-2xl font-bold text-gray-800 mb-6`}>
-                New Product
+                Novo Produto
             </Text>
 
             <TextInput
-                placeholder="Product name"
+                placeholder="Nome do produto"
                 value={name}
                 onChangeText={setName}
                 style={tw`bg-white px-4 py-3 rounded-lg mb-4 border border-gray-300`}
             />
 
             <TextInput
-                placeholder="Price"
+                placeholder="Preço do produto"
                 value={price}
                 keyboardType="numeric"
                 onChangeText={setPrice}
@@ -45,7 +51,7 @@ export default function ProductFormScreen({ navigation }) {
                 style={tw`bg-blue-600 py-3 rounded-lg`}
                 onPress={saveProduct}
             >
-                <Text style={tw`text-center text-white text-lg`}>Save</Text>
+                <Text style={tw`text-center text-white text-lg`}>Salvar</Text>
             </Pressable>
         </View>
     );

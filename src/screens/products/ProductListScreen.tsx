@@ -31,13 +31,13 @@ export default function ProductListScreen({ navigation }: ProductListScreenProps
                 style={tw`bg-blue-600 py-3 rounded-lg mb-4`}
                 onPress={() => navigation.navigate("ProductForm")}
             >
-                <Text style={tw`text-center text-white text-lg`}>Add Product</Text>
+                <Text style={tw`text-center text-white text-lg`}>Adicionar produto</Text>
             </Pressable>
 
             <FlatList
                 data={products}
                 keyExtractor={(item: Product) => item.id?.toString() ?? ""}
-                renderItem={({ item }: { item: Product }) => (
+                renderItem={({ item }: { item: Product; }) => (
                     <View style={tw`bg-white p-4 rounded-lg mb-3`}>
                         <Text style={tw`text-xl font-bold text-gray-800`}>{item.name}</Text>
                         <Text style={tw`text-gray-600`}>${item.price}</Text>

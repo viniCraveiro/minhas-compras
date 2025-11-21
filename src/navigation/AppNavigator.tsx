@@ -1,45 +1,49 @@
-import { NavigationContainer } from "@react-navigation/native";
 
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ChartDashboardScreen from "../screens/dashboard/DashboardScreen";
 import HomeScreen from "../screens/HomeScreen";
 import ProductFormScreen from "../screens/products/ProductFormScreen";
 import ProductListScreen from "../screens/products/ProductListScreen";
+import SettingsScreen from "../screens/settings/SettingsScreen";
 import { RootStackParamList } from "../types/Navigation";
-import ChartDashboardScreen from "../screens/dashboard/DashboardScreen";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
     return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator initialRouteName="Home">
 
-                <Stack.Screen
-                    name="Home"
-                    component={HomeScreen}
-                    options={{ title: "Home" }}
-                />
+            <Stack.Screen
+                name="Settings"
+                component={SettingsScreen}
+                options={{ title: "Configurações" }}
+            />
 
-                <Stack.Screen
-                    name="ProductList"
-                    component={ProductListScreen}
-                    options={{ title: "Products" }}
-                />
+            <Stack.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{ title: "Inicio" }}
+            />
 
-                <Stack.Screen
-                    name="ProductForm"
-                    component={ProductFormScreen}
-                    options={{ title: "New Product" }}
-                />
+            <Stack.Screen
+                name="ProductList"
+                component={ProductListScreen}
+                options={{ title: "Produtos" }}
+            />
 
-                <Stack.Screen
-                    name="ChartDashboard"
-                    component={ChartDashboardScreen}
-                    options={{ title: "Dashboard" }}
-                />
+            <Stack.Screen
+                name="ProductForm"
+                component={ProductFormScreen}
+                options={{ title: "Novo Produto" }}
+            />
 
-            </Stack.Navigator>
-        </NavigationContainer>
+            <Stack.Screen
+                name="ChartDashboard"
+                component={ChartDashboardScreen}
+                options={{ title: "Dashboard" }}
+            />
+
+        </Stack.Navigator>
     );
 }

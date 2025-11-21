@@ -15,6 +15,7 @@ Funciona **offline**, sincroniza automaticamente e pode ser usado no **Android, 
 ## 🚀 Tecnologias Utilizadas
 
 ### Frontend
+
 - **Expo SDK 54**
 - **React Native 0.81**
 - **React Navigation (Native Stack)**
@@ -24,6 +25,7 @@ Funciona **offline**, sincroniza automaticamente e pode ser usado no **Android, 
 - **React Native Chart Kit**
 
 ### Backend / Armazenamento
+
 - **Firebase Firestore**
 - **Firestore Offline Cache**
 - **SQLite (expo-sqlite)**
@@ -32,12 +34,12 @@ Funciona **offline**, sincroniza automaticamente e pode ser usado no **Android, 
 
 ## 🧩 Recursos do App
 
-- Cadastro de produtos, categorias e preços  
-- Registro automático de histórico de preços  
-- Listagem simples e rápida  
-- Dashboard com gráficos de evolução  
-- Funciona offline (SQLite + Firestore cache)  
-- Sincronização automática ao voltar a internet  
+- Cadastro de produtos, categorias e preços
+- Registro automático de histórico de preços
+- Listagem simples e rápida
+- Dashboard com gráficos de evolução
+- Funciona offline (SQLite + Firestore cache)
+- Sincronização automática ao voltar a internet
 - Disponível tanto no navegador quanto no celular
 
 ---
@@ -45,43 +47,53 @@ Funciona **offline**, sincroniza automaticamente e pode ser usado no **Android, 
 ## 📊 Funcionalidades
 
 ### ✔ Cadastro de Produtos
-- Nome  
-- Categoria  
-- Preço  
-- Imagem (opcional)  
+
+- Nome
+- Categoria
+- Preço
+- Imagem (opcional)
 
 ### ✔ Histórico de Preço
+
 Armazena automaticamente toda mudança de preço.
 
 ### ✔ Dashboard
+
 Comparações:
-- Diário  
-- Semanal  
-- Mensal  
-- 3 meses  
-- 6 meses  
-- Anual  
+
+- Diário
+- Semanal
+- Mensal
+- 3 meses
+- 6 meses
+- Anual
 
 ### ✔ Offline-first
-- Acesso completo offline  
+
+- Acesso completo offline
 - Dados sincronizados quando retorna a conexão
 
-- ---
+---
 
 ## ▶ Como Executar
 
 ### Instalar dependências
+
 ```bash
 npm install
 ```
 
 ### Rodar Mobile
+
 ```bash
 npx expo start --android
 npx expo start --ios
 ```
 
 ### Rodar Web
+
 ```bash
 npx expo start --web
 ```
+
+https://developer.android.com/studio?hl=pt-br

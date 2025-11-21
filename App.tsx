@@ -1,11 +1,19 @@
-import { StatusBar } from "expo-status-bar";
 import AppNavigator from "./src/navigation/AppNavigator";
+
+import { NavigationContainer } from '@react-navigation/native';
+import { LanguageProvider } from "./src/context/LanguageProvider";
+import { ThemeProvider } from "./src/context/ThemeProvider";
 
 export default function App() {
   return (
     <>
-      <StatusBar style="auto" />
-      <AppNavigator />
+      <ThemeProvider>
+        <LanguageProvider>
+          <NavigationContainer>
+            <AppNavigator />
+          </NavigationContainer>
+        </LanguageProvider >
+      </ThemeProvider>
     </>
   );
 }
