@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Pressable, Text, TextInput } from "react-native";
+import { Alert, Pressable, Text, TextInput } from "react-native";
 import tw from "twrnc";
 
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -8,6 +8,7 @@ import InputText from "../../components/InputText";
 import { createProduct } from "../../services/firebase/product.service";
 import { RootStackParamList } from "../../types/Navigation";
 import { parseCurrency } from "../../utils/currency";
+import { serverTimestamp } from "firebase/firestore";
 
 type Props = {
     navigation: NativeStackNavigationProp<RootStackParamList, "ProductForm">;
@@ -17,21 +18,41 @@ export default function ProductFormScreen({ navigation }: Props) {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
 
+    // Função para salvar o produto no Firestore
     async function saveProduct() {
+        // Validação do nome e do preço
+        if (!name.trim()) {
+            Alert.alert("Erro", "O nome do produto é obrigatório.");
+            return;
+        }
+
         const numericPrice = parseCurrency(price);
-        console.log("Salvando produto:", { name, price: numericPrice });
 
-        await createProduct({
-            name,
-            price: numericPrice,
-            categoryId: "default",
-            createdAt: Date.now(),
-            updatedAt: Date.now(),
-        });
+        if (isNaN(numericPrice) || numericPrice <= 0) {
+            Alert.alert("Erro", "O preço deve ser um valor válido.");
+            return;
+        }
 
-        console.log("Produto criado:", { name, price: numericPrice });
+        try {
+            console.log("Salvando produto:", { name, price: numericPrice });
 
-        navigation.navigate("ProductList");
+            // Criação do produto no Firestore
+            await createProduct({
+                name,
+                price: numericPrice,
+                categoryId: "default",
+                createdAt: serverTimestamp(), // Usando o timestamp do Firebase
+                updatedAt: serverTimestamp(), // Usando o timestamp do Firebase
+            });
+
+            console.log("Produto criado:", { name, price: numericPrice });
+
+            // Navegar para a tela de lista após salvar
+            navigation.navigate("ProductList");
+        } catch (error) {
+            console.error("Erro ao salvar o produto:", error);
+            Alert.alert("Erro", "Ocorreu um erro ao salvar o produto.");
+        }
     }
 
     return (
