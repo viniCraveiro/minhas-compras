@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../navigation/routes';
-import { ProductService } from '../db/client';
-import { Plus, Package } from 'lucide-react-native';
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { Package, Plus } from "lucide-react-native";
+import React, { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ProductService } from "../db/client";
+import { RootStackParamList } from "../navigation/routes";
 
-type NavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+type NavigationProp = StackNavigationProp<RootStackParamList, "Home">;
 
 const HomeScreen = () => {
   const navigation = useNavigation<NavigationProp>();
@@ -19,14 +27,14 @@ const HomeScreen = () => {
       const result = await ProductService.getAll();
       setProducts(result as any[]);
     } catch (err) {
-      console.error('Erro ao buscar produtos:', err);
+      console.error("Erro ao buscar produtos:", err);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
+    const unsubscribe = navigation.addListener("focus", () => {
       fetchProducts();
     });
     return unsubscribe;
@@ -41,19 +49,23 @@ const HomeScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={products}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.productItem}
-            onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}
+            onPress={() =>
+              navigation.navigate("ProductDetail", { productId: item.id })
+            }
           >
             <Package size={24} color="#666" />
             <View style={styles.productInfo}>
               <Text style={styles.productName}>{item.name}</Text>
-              <Text style={styles.productPrice}>R$ {Number(item.price).toFixed(2)}</Text>
+              <Text style={styles.productPrice}>
+                R$ {Number(item.price).toFixed(2)}
+              </Text>
             </View>
           </TouchableOpacity>
         )}
@@ -64,45 +76,45 @@ const HomeScreen = () => {
           </View>
         }
       />
-      <TouchableOpacity 
+      <TouchableOpacity
         style={styles.fab}
-        onPress={() => navigation.navigate('AddProduct')}
+        onPress={() => navigation.navigate("AddProduct")}
       >
         <Plus color="white" size={30} />
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f5f5f5' },
-  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  productItem: { 
-    flexDirection: 'row', 
-    padding: 15, 
-    backgroundColor: 'white', 
+  container: { flex: 1, backgroundColor: "#f5f5f5" },
+  center: { flex: 1, justifyContent: "center", alignItems: "center" },
+  productItem: {
+    flexDirection: "row",
+    padding: 15,
+    backgroundColor: "white",
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-    alignItems: 'center' 
+    borderBottomColor: "#eee",
+    alignItems: "center",
   },
   productInfo: { marginLeft: 15 },
-  productName: { fontSize: 16, fontWeight: 'bold' },
-  productPrice: { color: '#2ecc71', marginTop: 4 },
-  emptyContainer: { padding: 50, alignItems: 'center' },
-  emptyText: { fontSize: 16, color: '#999', fontWeight: 'bold' },
-  emptySubtext: { color: '#bbb', marginTop: 8 },
+  productName: { fontSize: 16, fontWeight: "bold" },
+  productPrice: { color: "#2ecc71", marginTop: 4 },
+  emptyContainer: { padding: 50, alignItems: "center" },
+  emptyText: { fontSize: 16, color: "#999", fontWeight: "bold" },
+  emptySubtext: { color: "#bbb", marginTop: 8 },
   fab: {
-    position: 'absolute',
+    position: "absolute",
     right: 20,
-    bottom: 20,
-    backgroundColor: '#3498db',
+    bottom: 50,
+    backgroundColor: "#3498db",
     width: 56,
     height: 56,
     borderRadius: 28,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     elevation: 5,
-  }
+  },
 });
 
 export default HomeScreen;

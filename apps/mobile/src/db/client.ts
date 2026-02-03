@@ -1,6 +1,5 @@
 import * as SQLite from "expo-sqlite";
 
-// Banco de dados local independente para o Mobile
 const db = SQLite.openDatabaseSync("minhascompras_mobile.db");
 
 export const initDb = async () => {
