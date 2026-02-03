@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "minhas-compras",
+    "slug": "minhas-compras",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icons/minhas-compras.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/icons/minhas-compras.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icons/minhas-compras.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/icons/minhas-compras.png"
+    }
+  }
+}
