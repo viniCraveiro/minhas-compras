@@ -1,3 +1,4 @@
+import { ProductService } from "@/db/client";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
@@ -9,7 +10,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { ProductService } from "../db/client";
 
 const AddProductScreen = () => {
   const navigation = useNavigation();

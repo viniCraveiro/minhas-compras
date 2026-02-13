@@ -1,6 +1,7 @@
 import * as SQLite from "expo-sqlite";
+import { v4 as uuidv4 } from "uuid";
 
-const db = SQLite.openDatabaseSync("minhascompras_mobile.db");
+export const db = SQLite.openDatabaseSync("minhascompras_mobile.db");
 
 export const initDb = async () => {
   try {
@@ -14,10 +15,27 @@ export const initDb = async () => {
         barcode TEXT,
         local text not null,
         synced INTEGER DEFAULT 0,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
       );
     `);
-    console.log("[MobileDB] Inicializado localmente");
+
+    await db.execAsync(`
+    CREATE TABLE IF NOT EXISTS categories (
+      id TEXT PRIMARY KEY NOT NULL,
+      name TEXT NOT NULL,
+      color TEXT NOT NULL,
+      icon TEXT NOT NULL,
+      synced INTEGER DEFAULT 0,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+  `);
+
+    console.log(
+      "\n\n [MobileDB] Inicializado localmente " +
+        new Date().toLocaleString("pt-BR"),
+    );
   } catch (error) {
     console.error("[MobileDB] Erro:", error);
   }

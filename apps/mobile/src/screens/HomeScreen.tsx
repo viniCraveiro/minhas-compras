@@ -12,9 +12,8 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ProductService } from "../db/client";
-import { RootStackParamList } from "../navigation/routes";
 
-type NavigationProp = StackNavigationProp<RootStackParamList, "Home">;
+type NavigationProp = StackNavigationProp<ProdutosStack, "Home">;
 
 const HomeScreen = () => {
   const navigation = useNavigation<NavigationProp>();
