@@ -13,6 +13,7 @@ export function DrawerNavigator() {
         <Drawer.Screen name="Produtos" component={ProdutosStack} />
 
         <Drawer.Screen name="Categorias" component={CategoriesScreen} />
+        <Drawer.Screen name="Locais" component={CategoriesScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

@@ -1,3 +1,4 @@
+import { currencyFormatter } from "@/utils/currency";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { Package, Plus } from "lucide-react-native";
@@ -63,7 +64,7 @@ const HomeScreen = () => {
             <View style={styles.productInfo}>
               <Text style={styles.productName}>{item.name}</Text>
               <Text style={styles.productPrice}>
-                R$ {Number(item.price).toFixed(2)}
+                {currencyFormatter.format(Number(item.price))}
               </Text>
             </View>
           </TouchableOpacity>

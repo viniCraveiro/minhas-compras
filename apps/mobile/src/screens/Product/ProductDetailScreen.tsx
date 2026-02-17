@@ -1,5 +1,6 @@
 import { ProductService } from "@/db/client";
 import { ProdutosStackParamList } from "@/navigation/ProdutoStack";
+import { currencyFormatter } from "@/utils/currency";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
@@ -39,7 +40,7 @@ const ProductDetailScreen = () => {
 
         <Text style={styles.label}>Preço Atual</Text>
         <Text style={[styles.value, styles.price]}>
-          R$ {Number(product.price).toFixed(2)}
+          {currencyFormatter.format(Number(product.price))}
         </Text>
 
         {product.barcode && (
@@ -51,7 +52,7 @@ const ProductDetailScreen = () => {
 
         <Text style={styles.label}>Cadastrado em</Text>
         <Text style={styles.value}>
-          {new Date(product.created_at).toLocaleDateString()}
+          {new Date(product.created_at).toLocaleDateString("pt-BR")}
         </Text>
       </View>
     </ScrollView>
